@@ -142,9 +142,18 @@ fieldset.card {
   min-width: 0;
 }
 
+/* Легенда как обычный заголовок внутри карточки, а не на рамке: верх совпадает с соседними блоками. */
 fieldset.card > legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  padding: 0 0.25rem;
+}
+
+fieldset.card > .field {
+  clear: both;
 }
 
 .grid {
