@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router';
-import { checkoutOptionsQuery, orderQuery } from '../api/queries';
-import type { CheckoutOptions, Order, PickupPoint } from '../api/types';
-import { useIndex } from '../lib';
-import { Async } from '../ui/Async';
-import { Notice } from '../ui/Notice';
-import { activeOrder } from '../features/order/activeOrder';
-import { OrderSummary } from '../features/order/OrderSummary';
-import { PaymentPanel } from '../features/order/PaymentPanel';
+import { checkoutOptionsQuery, orderQuery } from '@/api/queries';
+import type { CheckoutOptions, Order, PickupPoint } from '@/api/types';
+import { useIndex } from '@/lib';
+import { Async } from '@/ui/Async';
+import { Notice } from '@/ui/Notice';
+import { activeOrder } from '@/features/order/activeOrder';
+import { OrderSummary } from '@/features/order/OrderSummary';
+import { PaymentPanel } from '@/features/order/PaymentPanel';
 
 const STATUS_LABELS: Record<Order['status'], string> = {
   awaiting_payment: 'Ожидает оплаты',

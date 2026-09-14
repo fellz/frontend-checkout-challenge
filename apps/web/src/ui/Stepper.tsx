@@ -1,5 +1,5 @@
 import type { KeyboardEvent, FocusEvent } from 'react';
-import { Button } from './Button';
+import { Button } from '@/ui/Button';
 
 /**
  * Количество с кнопками «−/+» и полем ввода. Кнопки применяют сразу, поле — по Enter или потере

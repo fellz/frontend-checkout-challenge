@@ -1,7 +1,7 @@
 import { MutationCache, QueryCache, QueryClient } from '@tanstack/react-query';
-import { ApiError, hasCode, isRetryable } from './http';
-import { keys } from './queries';
-import { session } from './session';
+import { ApiError, hasCode, isRetryable } from '@/api/http';
+import { keys } from '@/api/queries';
+import { session } from '@/api/session';
 
 declare module '@tanstack/react-query' {
   interface Register {

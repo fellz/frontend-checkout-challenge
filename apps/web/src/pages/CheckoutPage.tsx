@@ -9,29 +9,29 @@ import {
   type SubmitEvent,
 } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { hasCode } from '../api/http';
-import { usePlaceOrder } from '../api/mutations';
-import { checkoutOptionsQuery, quoteQuery } from '../api/queries';
-import type { CheckoutOptions, DeliveryMethod, PickupPoint } from '../api/types';
-import { useIndex } from '../lib';
-import { formatMoney } from '../lib/money';
-import { useStore } from '../lib/storage';
-import { useDebounced } from '../lib/useDebounced';
-import { fieldErrorsOf, trimmed, type FieldErrors } from '../lib/validate';
-import { Async } from '../ui/Async';
-import { Button } from '../ui/Button';
-import { Field, RadioGroup, SelectField } from '../ui/Field';
-import { ErrorNotice, Notice } from '../ui/Notice';
-import { Loading } from '../ui/Spinner';
-import { activeOrder } from '../features/order/activeOrder';
-import { OrderSummary } from '../features/order/OrderSummary';
+import { hasCode } from '@/api/http';
+import { usePlaceOrder } from '@/api/mutations';
+import { checkoutOptionsQuery, quoteQuery } from '@/api/queries';
+import type { CheckoutOptions, DeliveryMethod, PickupPoint } from '@/api/types';
+import { useIndex } from '@/lib';
+import { formatMoney } from '@/lib/money';
+import { useStore } from '@/lib/storage';
+import { useDebounced } from '@/lib/useDebounced';
+import { fieldErrorsOf, trimmed, type FieldErrors } from '@/lib/validate';
+import { Async } from '@/ui/Async';
+import { Button } from '@/ui/Button';
+import { Field, RadioGroup, SelectField } from '@/ui/Field';
+import { ErrorNotice, Notice } from '@/ui/Notice';
+import { Loading } from '@/ui/Spinner';
+import { activeOrder } from '@/features/order/activeOrder';
+import { OrderSummary } from '@/features/order/OrderSummary';
 import {
   deliveryOf,
   draftStore,
   emptyDraft,
   validateDraft,
   type Draft,
-} from '../features/checkout/draft';
+} from '@/features/checkout/draft';
 
 export function CheckoutPage() {
   const options = useQuery(checkoutOptionsQuery);

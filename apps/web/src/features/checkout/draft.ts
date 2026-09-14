@@ -1,8 +1,8 @@
 import { AddressSchema, CustomerSchema } from '@checkout/contracts';
 import { Value } from '@sinclair/typebox/value';
-import type { Address, Customer, Delivery, PaymentMethod } from '../../api/types';
-import { createStore } from '../../lib/storage';
-import { trimmed, validate, type FieldErrors } from '../../lib/validate';
+import type { Address, Customer, Delivery, PaymentMethod } from '@/api/types';
+import { createStore } from '@/lib/storage';
+import { trimmed, validate, type FieldErrors } from '@/lib/validate';
 
 export type DeliveryDraft = {
   method: Delivery['method'];

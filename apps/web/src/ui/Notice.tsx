@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { isApiError } from '../api/http';
-import { Button } from './Button';
+import { isApiError } from '@/api/http';
+import { Button } from '@/ui/Button';
 
 type Kind = 'error' | 'info' | 'success' | 'warning';
 

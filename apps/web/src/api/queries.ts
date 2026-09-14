@@ -1,6 +1,6 @@
 import { queryOptions, skipToken } from '@tanstack/react-query';
-import { api } from './endpoints';
-import type { Payment, QuoteBody } from './types';
+import { api } from '@/api/endpoints';
+import type { Payment, QuoteBody } from '@/api/types';
 
 const MINUTE = 60_000;
 /** Интервал опроса статуса оплаты: API рекомендует 500–1000 мс. */

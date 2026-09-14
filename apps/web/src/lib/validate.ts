@@ -1,6 +1,6 @@
 import { FormatRegistry, type TSchema } from '@sinclair/typebox';
 import { Value, ValueErrorType, type ValueError } from '@sinclair/typebox/value';
-import { isApiError } from '../api/http';
+import { isApiError } from '@/api/http';
 
 // Контракт использует format: 'email'; TypeBox не поставляет форматы — регистрируем один раз.
 FormatRegistry.Set('email', (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value));

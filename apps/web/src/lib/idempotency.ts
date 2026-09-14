@@ -1,4 +1,4 @@
-import { createStore } from './storage';
+import { createStore } from '@/lib/storage';
 
 /**
  * Ключ идемпотентности для одной операции создания.

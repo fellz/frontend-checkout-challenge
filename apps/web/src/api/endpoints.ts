@@ -1,4 +1,4 @@
-import { data } from './http';
+import { data } from '@/api/http';
 import type {
   Cart,
   CartItem,
@@ -12,7 +12,7 @@ import type {
   Sandbox,
   Scenario,
   Simulation,
-} from './types';
+} from '@/api/types';
 
 const idempotent = (key: string) => ({ 'Idempotency-Key': key });
 const item = (productId: string) => `/api/cart/items/${encodeURIComponent(productId)}`;

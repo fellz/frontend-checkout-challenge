@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createIdempotencyKey } from '../lib/idempotency';
-import { api } from './endpoints';
-import { keys } from './queries';
-import type { CartItem, CreateOrder, Scenario } from './types';
+import { createIdempotencyKey } from '@/lib/idempotency';
+import { api } from '@/api/endpoints';
+import { keys } from '@/api/queries';
+import type { CartItem, CreateOrder, Scenario } from '@/api/types';
 
 /** Позиция корзины: `set(0)` удаляет. После изменения корзину перечитывает сервер (итоги считает он). */
 export function useCartItem(productId: string) {

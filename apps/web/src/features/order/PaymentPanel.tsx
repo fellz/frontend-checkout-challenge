@@ -1,14 +1,14 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useCreatePayment, useSimulatePayment } from '../../api/mutations';
-import { isFinalPayment, keys, paymentsQuery, sandboxQuery } from '../../api/queries';
-import type { Order, Payment } from '../../api/types';
-import { formatMoney } from '../../lib/money';
-import { Async } from '../../ui/Async';
-import { Button } from '../../ui/Button';
-import { RadioGroup } from '../../ui/Field';
-import { ErrorNotice, Notice } from '../../ui/Notice';
-import { Loading } from '../../ui/Spinner';
+import { useCreatePayment, useSimulatePayment } from '@/api/mutations';
+import { isFinalPayment, keys, paymentsQuery, sandboxQuery } from '@/api/queries';
+import type { Order, Payment } from '@/api/types';
+import { formatMoney } from '@/lib/money';
+import { Async } from '@/ui/Async';
+import { Button } from '@/ui/Button';
+import { RadioGroup } from '@/ui/Field';
+import { ErrorNotice, Notice } from '@/ui/Notice';
+import { Loading } from '@/ui/Spinner';
 
 /**
  * Оплата картой. Состояние берётся только с сервера: последняя попытка определяет, что показать —

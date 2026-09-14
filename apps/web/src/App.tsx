@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link, NavLink, Route, Routes, useLocation } from 'react-router';
-import { cartQuery } from './api/queries';
-import type { Cart } from './api/types';
-import { useStore } from './lib/storage';
-import { Notice } from './ui/Notice';
-import { activeOrder } from './features/order/activeOrder';
-import { CartPage } from './pages/CartPage';
-import { CatalogPage } from './pages/CatalogPage';
-import { CheckoutPage } from './pages/CheckoutPage';
-import { OrderPage } from './pages/OrderPage';
+import { cartQuery } from '@/api/queries';
+import type { Cart } from '@/api/types';
+import { useStore } from '@/lib/storage';
+import { Notice } from '@/ui/Notice';
+import { activeOrder } from '@/features/order/activeOrder';
+import { CartPage } from '@/pages/CartPage';
+import { CatalogPage } from '@/pages/CatalogPage';
+import { CheckoutPage } from '@/pages/CheckoutPage';
+import { OrderPage } from '@/pages/OrderPage';
 
 const quantityOf = (cart: Cart) => cart.quantity;
 

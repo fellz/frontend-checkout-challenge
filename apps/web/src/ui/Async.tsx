@@ -1,7 +1,7 @@
 import type { UseQueryResult } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
-import { Loading } from './Spinner';
-import { ErrorNotice } from './Notice';
+import { Loading } from '@/ui/Spinner';
+import { ErrorNotice } from '@/ui/Notice';
 
 /**
  * Единое отображение состояний запроса: загрузка, ошибка с повтором, данные.

@@ -1,8 +1,8 @@
-import { useCartItem } from '../../api/mutations';
-import type { Product, CartItem } from '../../api/types';
-import { Button } from '../../ui/Button';
-import { ErrorNotice } from '../../ui/Notice';
-import { Stepper } from '../../ui/Stepper';
+import { useCartItem } from '@/api/mutations';
+import type { Product, CartItem } from '@/api/types';
+import { Button } from '@/ui/Button';
+import { ErrorNotice } from '@/ui/Notice';
+import { Stepper } from '@/ui/Stepper';
 
 /**
  * Кнопка «В корзину» либо счётчик количества для товара — одно поведение в каталоге и корзине.

@@ -1,5 +1,5 @@
-import type { CartItem, Delivery, PickupPoint } from '../../api/types';
-import { Money } from '../../ui/Money';
+import type { CartItem, Delivery, PickupPoint } from '@/api/types';
+import { Money } from '@/ui/Money';
 
 /** Состав и итоги: используется в оформлении (из расчёта) и на странице заказа. */
 export function OrderSummary({

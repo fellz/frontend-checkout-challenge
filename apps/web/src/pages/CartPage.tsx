@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
-import { cartQuery, productsQuery } from '../api/queries';
-import type { Product } from '../api/types';
-import { useIndex } from '../lib';
-import { Async } from '../ui/Async';
-import { Money } from '../ui/Money';
-import { ErrorNotice, Notice } from '../ui/Notice';
-import { CartControls } from '../features/cart/CartControls';
+import { cartQuery, productsQuery } from '@/api/queries';
+import type { Product } from '@/api/types';
+import { useIndex } from '@/lib';
+import { Async } from '@/ui/Async';
+import { Money } from '@/ui/Money';
+import { ErrorNotice, Notice } from '@/ui/Notice';
+import { CartControls } from '@/features/cart/CartControls';
 
 const byId = (product: Product) => product.id;
 

@@ -1,5 +1,5 @@
 import type { ApiError as ApiErrorBody, ApiResult } from '@checkout/contracts';
-import { session } from './session';
+import { session } from '@/api/session';
 
 export const API_URL = String(import.meta.env.VITE_API_URL ?? 'http://localhost:4000').replace(
   /\/+$/,

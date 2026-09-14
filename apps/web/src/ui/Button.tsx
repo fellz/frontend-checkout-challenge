@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import { Spinner } from './Spinner';
+import { Spinner } from '@/ui/Spinner';
 
 type Props = ComponentProps<'button'> & {
   /** Операция выполняется: кнопка заблокирована и показывает индикатор — защита от двойного нажатия. */

@@ -1,4 +1,4 @@
-import { createStore } from '../lib/storage';
+import { createStore } from '@/lib/storage';
 
 /**
  * Токен гостевой сессии. Создание и обновление токена делает транспорт (http.ts) —
