@@ -40,5 +40,11 @@ export const queryClient = new QueryClient({
   },
 });
 
-// Новая сессия — другая корзина и другие заказы: всё закэшированное устарело.
-session.subscribe(() => void queryClient.invalidateQueries());
+// Сессию заменили (API не узнал прежний токен) — корзина и заказы в кэше чужие, перечитываем.
+// Первое создание токена не в счёт: кэш ещё пуст, а запросы в полёте уже ждут этот токен.
+let knownToken = session.get();
+session.subscribe(() => {
+  const token = session.get();
+  if (knownToken && token !== knownToken) void queryClient.invalidateQueries();
+  knownToken = token;
+});

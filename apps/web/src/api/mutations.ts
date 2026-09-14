@@ -10,6 +10,7 @@ export function useCartItem(productId: string) {
   return useMutation({
     mutationFn: (quantity: number): Promise<CartItem | void> =>
       quantity > 0 ? api.cart.setItem(productId, quantity) : api.cart.removeItem(productId),
+    // Промис возвращаем намеренно: счётчик остаётся заблокированным, пока не пришла новая корзина.
     onSettled: () => client.invalidateQueries({ queryKey: keys.cart }),
   });
 }
@@ -37,8 +38,10 @@ export function usePlaceOrder() {
         await createPayment(order.id, null).catch(() => undefined);
       return order;
     },
-    // Корзина очищена сервером. Конфликты версии и расчёта обрабатывает queryClient.
-    onSuccess: () => client.invalidateQueries({ queryKey: keys.cart }),
+    // Корзина очищена сервером — перечитываем, но не ждём: пока идёт запрос, форма оформления
+    // увидела бы пустую корзину и размонтировалась раньше, чем сработает переход на заказ.
+    // Конфликты версии и расчёта обрабатывает queryClient.
+    onSuccess: () => void client.invalidateQueries({ queryKey: keys.cart }),
   });
 }
 
