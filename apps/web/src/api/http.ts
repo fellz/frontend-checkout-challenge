@@ -5,6 +5,8 @@ export const API_URL = String(import.meta.env.VITE_API_URL ?? 'http://localhost:
   /\/+$/,
   '',
 );
+/** Искусственная пауза перед каждым запросом, чтобы разглядеть состояния загрузки. 0 — выключена. */
+const API_DELAY_MS = Number(import.meta.env.VITE_API_DELAY_MS ?? 0);
 
 export type RequestSpec = {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -87,6 +89,7 @@ async function send(spec: RequestSpec, token: string | null): Promise<Response> 
   headers.set('Accept', 'application/json');
   if (spec.body !== undefined) headers.set('Content-Type', 'application/json');
   if (token) headers.set('Authorization', `Bearer ${token}`);
+  if (API_DELAY_MS > 0) await new Promise((resolve) => setTimeout(resolve, API_DELAY_MS));
   try {
     return await fetch(API_URL + spec.path, {
       method: spec.method ?? 'GET',
