@@ -19,6 +19,16 @@ npm ci
 npm run dev
 ```
 
+Фронтенд — в отдельном терминале:
+
+```sh
+npm run dev:web      # http://localhost:5173
+npm run build:web    # сборка в apps/web/dist
+npm run preview:web  # просмотр собранного
+```
+
+Устройство фронтенда, принятые решения, проверенные сценарии и недоработки — в [apps/web/README.md](apps/web/README.md).
+
 Swagger: [http://localhost:4000/docs/](http://localhost:4000/docs/). Спецификация: [http://localhost:4000/openapi.json](http://localhost:4000/openapi.json) или [файл в репозитории](docs/openapi.json).
 
 В Swagger выполните `POST /api/sessions` с телом `{}`. Скопируйте `data.token` в **Authorize**, без слова `Bearer`.
