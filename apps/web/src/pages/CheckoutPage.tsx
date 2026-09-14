@@ -6,7 +6,7 @@ import {
   useState,
   type ChangeEvent,
   type FocusEvent,
-  type FormEvent,
+  type SubmitEvent,
 } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { hasCode } from '../api/http';
@@ -142,7 +142,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
     if (conflict) setStale(true);
   }, [conflict]);
 
-  const submit = (event: FormEvent) => {
+  const submit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setStale(false);
     const found = validateDraft(draft);
