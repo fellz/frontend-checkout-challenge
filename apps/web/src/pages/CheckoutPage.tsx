@@ -1,5 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useMemo, useRef, useState, type ChangeEvent, type FormEvent } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
+} from 'react';
 import { Link, useNavigate } from 'react-router';
 import { hasCode } from '../api/http';
 import { usePlaceOrder } from '../api/mutations';
@@ -102,10 +110,14 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
         `delivery/address/${field}`,
       );
 
-  useEffect(() => {
-    const first = Object.keys(errors)[0];
-    if (first) document.getElementById(first)?.focus();
-  }, [errors]);
+  // Проверка поля при потере фокуса — теми же правилами, что и при отправке.
+  // Пустое поле не трогаем: иначе проход табом по форме сразу красит всё.
+  const checkOnBlur =
+    (key: string) => (event: FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+      if (!event.target.value.trim()) return;
+      const message = validateDraft(draft)[key];
+      if (message) setErrors((previous) => ({ ...previous, [key]: message }));
+    };
 
   const quoteReady = quote.data !== undefined && !quote.isFetching && delivery === draft.delivery;
 
@@ -135,7 +147,8 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
     setStale(false);
     const found = validateDraft(draft);
     setErrors(found);
-    if (Object.keys(found).length > 0) return;
+    const first = Object.keys(found)[0];
+    if (first) return document.getElementById(first)?.focus();
     if (quoteReady) place(quote.data.id);
     else setArmed(true);
   };
@@ -161,6 +174,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
             autoComplete="name"
             value={draft.customer.name}
             onChange={customerInput('name')}
+            onBlur={checkOnBlur('customer/name')}
             error={errors['customer/name']}
           />
           <Field
@@ -171,6 +185,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
             inputMode="email"
             value={draft.customer.email}
             onChange={customerInput('email')}
+            onBlur={checkOnBlur('customer/email')}
             error={errors['customer/email']}
             hint="Например, buyer@example.test"
           />
@@ -182,6 +197,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
             inputMode="tel"
             value={draft.customer.phone}
             onChange={customerInput('phone')}
+            onBlur={checkOnBlur('customer/phone')}
             error={errors['customer/phone']}
             hint="В формате +79990000000"
           />
@@ -230,6 +246,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
                 autoComplete="address-level2"
                 value={draft.delivery.address.city}
                 onChange={addressInput('city')}
+                onBlur={checkOnBlur('delivery/address/city')}
                 error={errors['delivery/address/city']}
               />
               <Field
@@ -238,6 +255,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
                 autoComplete="address-line1"
                 value={draft.delivery.address.street}
                 onChange={addressInput('street')}
+                onBlur={checkOnBlur('delivery/address/street')}
                 error={errors['delivery/address/street']}
               />
               <Field
@@ -245,6 +263,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
                 label="Дом"
                 value={draft.delivery.address.house}
                 onChange={addressInput('house')}
+                onBlur={checkOnBlur('delivery/address/house')}
                 error={errors['delivery/address/house']}
               />
               <Field
@@ -252,6 +271,7 @@ function CheckoutForm({ options }: { options: CheckoutOptions }) {
                 label="Квартира"
                 value={draft.delivery.address.apartment}
                 onChange={addressInput('apartment')}
+                onBlur={checkOnBlur('delivery/address/apartment')}
                 error={errors['delivery/address/apartment']}
                 hint="Необязательно"
               />
