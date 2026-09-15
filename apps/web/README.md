@@ -50,6 +50,9 @@ src/lib/storage.ts     типизированное JSON-хранилище с �
 src/ui/                Button (pending = заблокирована + индикатор), Field/SelectField/RadioGroup
                        (label, aria-invalid, aria-describedby), Notice/ErrorNotice (сообщение +
                        «Повторить»), Async (загрузка/ошибка/данные для любого запроса), Stepper.
+src/features/checkout/ useDraft (черновик + ошибки полей), useQuote (debounce → расчёт),
+                       useCheckout (ожидание расчёта, создание заказа, конфликт); поля формы и
+                       итоги — отдельные компоненты, страница только собирает их.
 src/features/, pages/  компоненты получают готовые данные или разобранную ошибку и только рисуют.
 ```
 
