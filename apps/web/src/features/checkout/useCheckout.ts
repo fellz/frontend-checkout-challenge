@@ -33,17 +33,20 @@ export function useCheckout(form: DraftForm, quote: QuoteState) {
   const conflict =
     hasCode(quote.query.error, 'CART_VERSION_CONFLICT') ||
     hasCode(placeOrder.error, 'CART_VERSION_CONFLICT', 'QUOTE_EXPIRED', 'QUOTE_NOT_FOUND');
+
   useEffect(() => {
     if (conflict) setStale(true);
   }, [conflict]);
 
+  // `place` замыкает текущий черновик и создаётся заново каждый рендер, поэтому эффект
+  // фактически проверяется после каждого рендера; пока `armed` не взведён, он выходит сразу.
   useEffect(() => {
     if (!armed) return;
     if (quote.current) {
       setArmed(false);
       place(quote.current.id);
     } else if (quote.query.isError) setArmed(false);
-  });
+  }, [armed, quote.current, quote.query.isError, place]);
 
   return {
     submit(event: SubmitEvent<HTMLFormElement>) {
