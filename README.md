@@ -1,4 +1,26 @@
-# Тестовое задание для фронтенд-разработчика
+# Магазин с оформлением заказа — решение тестового (React 19 + TypeScript, TanStack Query)
+
+Фронтенд для готового REST API: каталог, корзина, оформление заказа, оплата тестовой картой
+с повторами и отменой. Бэкенд, контракты и условия — от [instatdigital](https://github.com/instatdigital/frontend-checkout-challenge);
+всё в `apps/web` — моё.
+
+**Стек:** React 19 · TypeScript · Vite · react-router · TanStack Query · TypeBox-схемы из `@checkout/contracts`.
+
+**Ключевые решения**
+
+- Один транспорт `request(spec)`: статус, конверт `{data, meta, links}`, `ApiError {kind, status, code, fields}`, авто-пересоздание гостевой сессии на 401 — компоненты не видят `Response`.
+- Вызовы API описаны как данные (`endpoints.ts`): путь, метод, тело, `Idempotency-Key`; ключ идемпотентности один и тот же для повтора той же операции (двойной клик, потеря ответа) и новый — для новой попытки.
+- Состояние оплаты не хранится на клиенте: страница заказа читает заказ и попытки с сервера и опрашивает, пока последняя — `processing`; перезагрузка ничего не теряет.
+- Проверка формы и ошибки полей из API приводятся к одним ключам через схемы контракта.
+
+Устройство, проверенные сценарии и недоработки — в **[apps/web/README.md](apps/web/README.md)**.
+Тот же интерфейс **без TanStack Query, со своим кэшем серверного состояния (~200 строк)** —
+[frontend-checkout-challenge-plain](https://github.com/fellz/frontend-checkout-challenge-plain).
+Второе тестовое из той же пары — канвас на React Flow: [frontend-canvas-challenge](https://github.com/fellz/frontend-canvas-challenge).
+
+---
+
+## Условия задания (от instatdigital)
 
 Нужно сделать интерфейс магазина: каталог, корзину, оформление заказа и оплату тестовой картой. Бэкенд готов, фронтенд добавьте в `apps/web`.
 
